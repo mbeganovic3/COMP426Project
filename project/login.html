@@ -1,27 +1,68 @@
-<!-- Make sure to use login.css stylesheet -->
-<div id="login">
-        <div class="login-card">
-            <div class="card-title">
-                <h1>Login</h1>
-            </div>
+<!DOCTYPE html>
+<html lang="en">
 
-            <div class="content">
-                <form id="login-form">
-                    <input id="email" type="email" name="email" title="email" placeholder="Email" required autofocus>
-                    <input id="password" type="password" name="password" title="password" placeholder="Password" required>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-                    <div class="field">
-                        <div class="control">
-                            <button type="submit" class="btn btn-primary">Login</button>
+    <title>Website Name</title>
+
+    <!-- Include links to CSS stylesheets below -->
+    <link rel="stylesheet" href="node_modules/bulma/css/bulma.css" />
+    <link rel="stylesheet" href="node_modules/bulma/css/bulma.min.css" />
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link rel="stylesheet" href="login.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="google-signin-client_id"content="959090641049-emjr7csei4nhno0ih08enk66uvbafj0h.apps.googleusercontent.com">
+	<script async="" defer="defer" crossorigin="anonymous"src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0&appId=473429603290834&autoLogAppEvents=1"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="backend.js"></script>
+    <script src="node_modules/axios/dist/axios.js"></script>
+    
+</head>
+
+<body>
+    
+    <!-- Include links to JavaScript files below -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="script.js"></script>
+
+    <!-- Include links to JavaScript files below -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="script.js"></script>
+    <script src="login.js"></script>
+
+    <div id="root">
+
+            <div id="login">
+                    <div class="login-card">
+                        <div id="fb-root"></div>
+                        <div class="card-title">
+                            <h1>Login</h1>
+                        </div>
+            
+                        <div class="content">
+                            <form id="login-form">
+            
+                                <div class="field">
+                                    <div class="control">
+                                        <div class="g-signin2" data-onsuccess="googleLogin" data-width="300"></div>
+                                    </div>
+                                    <div class="fb-login-button" data-onlogin="facebookLogin" data-width="300" data-size="large"
+                                    data-button-type="login_with" data-auto-logout-link="false" data-use-continue-as="true">
+                                </div>
+                                </div>
+            
+                                <div class="field">
+                                    <div class="control">
+                                        <p id="message"></p>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
+                </div>
 
-                    <div class="field">
-                        <div class="control">
-                            <p id="message"></p>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+</body>
+
+</html>

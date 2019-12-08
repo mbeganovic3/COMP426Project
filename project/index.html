@@ -5,13 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Feed</title>
+    <title>Website Name</title>
 
     <!-- Include links to CSS stylesheets below -->
     <link rel="stylesheet" href="node_modules/bulma/css/bulma.css" />
     <link rel="stylesheet" href="node_modules/bulma/css/bulma.min.css" />
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <link rel="stylesheet" href="login.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="google-signin-client_id"content="959090641049-emjr7csei4nhno0ih08enk66uvbafj0h.apps.googleusercontent.com">
+	<script async="" defer="defer" crossorigin="anonymous"src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0&appId=473429603290834&autoLogAppEvents=1"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="node_modules/axios/dist/axios.js"></script>
+    
 </head>
 
 <body>
@@ -19,6 +25,51 @@
     <!-- Include links to JavaScript files below -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="script.js"></script>
+
+    <div id="root">
+                
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+            <a id="logo" class="navbar-item" href="index.html">
+                <img src="/island.png" alt="Image">
+            </a>
+            </div>
+
+            <div class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item">
+                Home
+                </a>
+            </div>
+        
+            <div style="width: 50%; margin-top: 15px; margin-bottom: 10px" class"navbar-item">
+                <input class="input" type="text" placeholder="Search for classes">
+            </div>
+
+            <div class="navbar-end">
+                    <div class="navbar-item has-dropdown is-hoverable">
+                            <a class="navbar-link">
+                                <img id="profileicon" src="/myprofile.png">
+                            </a>
+                    
+                            <div class="navbar-dropdown">
+                              <a class="navbar-item">
+                                Profile
+                              </a>
+                              <a class="navbar-item">
+                                Logout
+                              </a>
+                            </div>
+                          </div>
+            </div>
+            </div>
+        </nav>
+
+        
+        <div class="display">
+
+                    
+        </div>
 </body>
 
 </html>
