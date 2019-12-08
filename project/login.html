@@ -1,27 +1,81 @@
-<!-- Make sure to use login.css stylesheet -->
-<div id="login">
-        <div class="login-card">
-            <div class="card-title">
-                <h1>Login</h1>
-            </div>
+<!DOCTYPE html>
+<html lang="en">
 
-            <div class="content">
-                <form id="login-form">
-                    <input id="email" type="email" name="email" title="email" placeholder="Email" required autofocus>
-                    <input id="password" type="password" name="password" title="password" placeholder="Password" required>
+<head>
+	<title>Login</title>
+	<meta charset="UTF-8">
+	<meta name="google-signin-client_id"content="959090641049-emjr7csei4nhno0ih08enk66uvbafj0h.apps.googleusercontent.com">
+	<script async="" defer="defer" crossorigin="anonymous"src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0&appId=473429603290834&autoLogAppEvents=1"></script>
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
 
-                    <div class="field">
-                        <div class="control">
-                            <button type="submit" class="btn btn-primary">Login</button>
-                        </div>
-                    </div>
+	<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="loginSTYLE/images/icons/favicon.ico" />
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="loginSTYLE/vendor/bootstrap/css/bootstrap.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="loginSTYLE/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="loginSTYLE/fonts/iconic/css/material-design-iconic-font.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="loginSTYLE/vendor/animate/animate.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="loginSTYLE/vendor/css-hamburgers/hamburgers.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="loginSTYLE/vendor/animsition/css/animsition.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="loginSTYLE/vendor/select2/select2.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="loginSTYLE/vendor/daterangepicker/daterangepicker.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="loginSTYLE/css/util.css">
+	<link rel="stylesheet" type="text/css" href="loginSTYLE/css/main.css">
+	<!--===============================================================================================-->
+</head>
 
-                    <div class="field">
-                        <div class="control">
-                            <p id="message"></p>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+<body>
+		<div id="fb-root"></div>
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url('loginSTYLE/images/bg-01.jpg');">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form">
+					<span class="login100-form-logo">
+						<img src="logo.png" alt="IMG">
+					</span>
+
+					<span class="login100-form-title p-b-34 p-t-27">
+						Log in
+					</span>
+					<div class="container-login100-form-btn">
+						<div class="g-signin2" data-onsuccess="googleLogin" data-width="300"></div>
+
+						<div class="fb-login-button" data-onlogin="facebookLogin" data-width="300" data-size="large"
+							data-button-type="login_with" data-auto-logout-link="false" data-use-continue-as="true">
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!--===============================================================================================-->
+	<script src="loginSTYLE/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="loginSTYLE/vendor/animsition/js/animsition.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="loginSTYLE/vendor/bootstrap/js/popper.js"></script>
+	<script src="loginSTYLE/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="loginSTYLE/vendor/select2/select2.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="loginSTYLE/vendor/daterangepicker/moment.min.js"></script>
+	<script src="loginSTYLE/vendor/daterangepicker/daterangepicker.js"></script>
+	<!--===============================================================================================-->
+	<script src="loginSTYLE/vendor/countdowntime/countdowntime.js"></script>
+	<!--===============================================================================================-->
+	<script src="login.js"></script>
+
+
+</body>
+
+</html>
