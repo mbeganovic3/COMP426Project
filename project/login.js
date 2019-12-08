@@ -62,6 +62,7 @@ async function googleLogin(googleUser) {
   }
 
 function facebookLogin() {
+    console.log("a");
     FB.api(
       '/me',
       'GET',
@@ -70,6 +71,7 @@ function facebookLogin() {
           localStorage.setItem('name', response.name);     
       }
     );
+    console.log("b");
     window.location.replace("index.html");
 }
 
