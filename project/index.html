@@ -8,6 +8,7 @@
     <title>Website Name</title>
 
     <!-- Include links to CSS stylesheets below -->
+    <link rel="stylesheet" href="https://cdn.rawgit.com/LeaVerou/awesomplete/gh-pages/awesomplete.css">
     <link rel="stylesheet" href="node_modules/bulma/css/bulma.css" />
     <link rel="stylesheet" href="node_modules/bulma/css/bulma.min.css" />
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
@@ -24,6 +25,7 @@
     
     <!-- Include links to JavaScript files below -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.rawgit.com/LeaVerou/awesomplete/gh-pages/awesomplete.min.js"></script>
     <script src="script.js"></script>
 
     <div id="root">
@@ -43,7 +45,7 @@
             </div>
         
             <div style="width: 50%; margin-top: 15px; margin-bottom: 10px" class"navbar-item">
-                <input class="input" type="text" placeholder="Search for classes">
+                <input class="awesomplete input" data-minchars="0" data-maxitems="5" data-list="COMP 110, COMP 283, COMP 290, COMP 401, COMP 410, COMP 411, COMP 426, COMP 431, COMP 455, COMP 521, COMP 531, COMP 550" />
             </div>
 
             <div class="navbar-end">
