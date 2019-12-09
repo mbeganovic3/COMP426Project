@@ -214,6 +214,15 @@ $(document).ready(function() {
     // }
 
     loadPublicHome();
+
+    //Adding listener to search button
+    var myEl = document.getElementById('searchButton');
+
+    myEl.addEventListener('click', function() {
+        selection = document.getElementById('mainSearchBar').value
+        alert(selection);
+    }, false);
+
 });
 
 //---------------JOIN A CLASS--------------------
