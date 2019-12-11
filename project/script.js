@@ -222,6 +222,37 @@ const loadUserHome = async function() {
     $(document).on("click", "#logout", handleLogout);
 }
 
+const setupSearchBox = async function() {
+    //Adding listener to search button
+    var myEl = document.getElementById('searchButton');
+
+    myEl.addEventListener('click', async function() {
+        selection = document.getElementById('mainSearchBar').value
+        let myClasses = await getMyCourses();
+        let myCourses = myClasses.data.result;
+        console.log(myCourses);
+        selectionNum = selection.slice(-3);
+        let inSelectedClass = false;
+
+        //Checking if the user has joined selected class
+        for (i = 0; i < myCourses.length; i++) {
+            if(selectionNum === myCourses[i]){
+                inSelectedClass = true;
+            }
+        }
+
+        //Trying to navigate to seleected class
+        if(inSelectedClass){
+            localStorage.setItem('class', selectionNum);
+            window.location.href = "coursePage.html";
+            //FINDING PAGE TO OPEN
+        }else{
+            alert("Please join this class first or enter a valid number");
+        }
+
+    }, false);
+}
+
 const getAllCourses = async function() {
     return await pubRoot.get('/authors');
 }
@@ -243,6 +274,7 @@ $(document).ready(function() {
         loadPublicHome();
     } else {
         loadUserHome();
+        setupSearchBox()
     }
 });
 

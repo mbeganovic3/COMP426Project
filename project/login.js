@@ -33,7 +33,8 @@ async function googleLogin(googleUser) {
     localStorage.setItem('name', profile.getName());
     console.log("A");
     const name = localStorage.getItem('name');
-    // const x = await axios( {
+    console.log(name);
+    // const y = await axios( {
     //     method: "POST",
     //     url: "http://localhost:3000/account/create",
     //     data: {
@@ -56,7 +57,7 @@ async function googleLogin(googleUser) {
     
     localStorage.setItem('jwt', y.data.jwt);
     localStorage.setItem('name', y.data.name);
-    //window.location.replace("index.html"); 
+    window.location.replace("index.html"); 
   }
 
 function facebookLogin() {
