@@ -56,9 +56,7 @@ async function googleLogin(googleUser) {
     
     localStorage.setItem('jwt', y.data.jwt);
     localStorage.setItem('name', y.data.name);
-    console.log("a");
-    window.location.replace("index.html"); 
-    console.log("b");
+    //window.location.replace("index.html"); 
   }
 
 function facebookLogin() {

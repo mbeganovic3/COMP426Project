@@ -1,7 +1,11 @@
+
+
 //--------------------RENDER HTML------------------
 
 const renderUserClass = function(c) {
-    let course = ['<div class="box post" style="background-color: #e7f4fd">',
+    let course = ['<div id="',
+    c,
+    '"class="box post" style="background-color: #e7f4fd">',
     '<article class="media">',
         '<div class="media-content">',
             '<div class="content">',
@@ -12,7 +16,9 @@ const renderUserClass = function(c) {
             '</div>',
         '</div>',
         '<div class="media-right">',
-            '<button class="button is-danger">Remove</button>',
+            '<button id="remove" class="button is-danger" name="',
+            c,
+            '">Remove</button>',
         '</div>',
     '</article>',
     '</div>'].join('');
@@ -21,7 +27,9 @@ const renderUserClass = function(c) {
 }
 
 const renderClass = function(c) {
-    let course = ['<div class="box post" style="background-color: #e7f4fd">',
+    let course = ['<div id="',
+   "" + c.number + "",
+    '"class="box post" style="background-color: #e7f4fd">',
     '<article class="media">',
         '<div class="media-content">',
             '<div class="content">',
@@ -139,6 +147,8 @@ const renderPostForm = function() {
 //---------------LOAD HOME PAGE-------------------
 
 const loadPublicHome = async function() {
+    let menu = document.getElementById("menu");
+    $(menu).replaceWith('<a style="margin-right: 12px" href="login.html" class="navbar-item">Login</a>');
     // get classes
     let classes = await getAllCourses();
     
@@ -153,46 +163,63 @@ const loadPublicHome = async function() {
 
     // add event handler for joining a class
     $(document).on("click", "#join", handleJoin);
+    // $(document).on("click", "#login", login);
 }
 
 const loadUserHome = async function() {
+    // generate and load other classes
     $('.display').append('<div class="myClasses"></div>');
     $('.myClasses').append('<h1 class="is-family-primary" align="center"><strong>My Classes</strong></h1>');
-    // get classes
+
+    $('.display').append('<div style="margin-top: 15px" class="moreClasses"></div>');
+    $('.moreClasses').append('<h1 class="is-family-primary" align="center"><strong>More Classes</strong></h1>');
+
     let myClasses = await getMyCourses();
+
+    if (myClasses !== undefined) {
+
+        let courses = myClasses.data.result;
+        
+        // generate and load classes using renderClass
+        let rendered = [];
     
-    let courses = myClasses.data.result;
+        courses.forEach (c => {rendered.push(renderUserClass(c))});
+        $('.myClasses').append(rendered);
 
-    console.log(courses);
-    // generate and load classes using renderClass
-    let rendered = [];
+        // get classes
+        let classes = await getAllCourses();
 
-    courses.forEach (c => {rendered.push(renderUserClass(c))});
-    $('.myClasses').append(rendered);
-
-    // generate and load other classes
-    $('.display').append('<div class="moreClasses"></div>');
-    $('.myClasses').append('<h1 class="is-family-primary" align="center"><strong>More Classes</strong></h1>');
-
-    // get classes
-    let classes = await getAllCourses();
+        let otherCourses = classes.data.result;
+        
+        
+        // generate and load classes using renderClass
+        let otherRendered = [];
     
-    let otherCourses = classes.data.result;
+        otherCourses.forEach (c => {
+            if (!courses.includes("" + c.number + "")) {
+                otherRendered.push(renderClass(c))
+            }
+        });
+        $('.moreClasses').append(otherRendered);
+
+    } else {
+        // get classes
+        let classes = await getAllCourses();
+        
+        let courses = classes.data.result;
 
 
-    // generate and load classes using renderClass
-    let otherRendered = [];
+        // generate and load classes using renderClass
+        let rendered = [];
 
-    otherCourses.forEach (c => {
-        if (!myClasses.includes(c.number)) {
-            otherRendered.push(renderClass(c))
-        }
-    });
-    $('.display').append(otherRendered);
-
-
+        courses.forEach (c => {rendered.push(renderClass(c))});
+        $('.display').append(rendered);
+    }
+    
     // add event handler for joining a class
     $(document).on("click", "#join", handleJoin);
+    $(document).on("click", "#remove", handleRemove);
+    $(document).on("click", "#logout", handleLogout);
 }
 
 const getAllCourses = async function() {
@@ -200,50 +227,108 @@ const getAllCourses = async function() {
 }
 
 const getMyCourses = async function() {
+    const id = localStorage.getItem('id');
     const auth = localStorage.getItem('jwt');
-    return await userRoot.get('/' + auth, {headers: { Authorization: `Bearer ${auth}` }});
+    try {
+        return await userRoot.get("http://localhost:3000/user/" + id + "/courses", {headers: { Authorization: `Bearer ${auth}` }});
+    } catch(e) {
+        return;
+    }
 }
 
 //---------------ON PAGE LOAD---------------------
 
 $(document).ready(function() {
-    // if (localStorage.getItem('name') == null) {
-    //     loadPublicHome();
-    // } else {
-    //     loadUserHome();
-    // }
-
-    loadPublicHome();
-
-    //Adding listener to search button
-    var myEl = document.getElementById('searchButton');
-
-    myEl.addEventListener('click', function() {
-        selection = document.getElementById('mainSearchBar').value
-        alert(selection);
-    }, false);
-
+    if (localStorage.getItem('name') == null) {
+        loadPublicHome();
+    } else {
+        loadUserHome();
+    }
 });
 
+//-----------------LOGOUT/LOGIN------------------------
+const handleLogout = function(event) {
+    event.preventDefault();
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function() {
+        console.log("User signed out");
+    });
+
+    localStorage.clear();
+
+    console.log("b");
+    
+    $(".display").empty();
+    loadPublicHome();
+
+}
+
+function onLoad() {
+    gapi.load('auth2', function() {
+        gapi.auth2.init();
+    })
+}
+
+function login(event) {
+    console.log(window.location);
+    // window.location.replace("login.html");
+}
 //---------------JOIN A CLASS--------------------
 
 const handleJoin = async function(event) {
-    console.log(localStorage.getItem('name'));
     if (localStorage.getItem('name') == null) {
         window.location.replace("login.html");
     } else {
-        const name = localStorage.getItem('name');
+        const id = localStorage.getItem('id');
         const course = event.target.name;
+        console.log(course);
         const auth = localStorage.getItem('jwt');
         axios
-            .post("http://localhost:3000/user/" + auth + "/", {data: [course], type: "merge"}, {headers: { Authorization: `Bearer ${auth}` }},
+            .post("http://localhost:3000/user/" + id + "/courses/", {data: [course], type: "merge"}, {headers: { Authorization: `Bearer ${auth}` }},
             )
             .then(res => console.log(res))
             .catch(err => console.log(err));
+        let c = renderUserClass(course);
+        let removed = document.getElementById(course);
+        $(removed).remove();
+        $('.myClasses').append(c);
     }
 
-
     return;
+}
+
+//------------REMOVE A CLASS---------------------\
+
+const handleRemove = async function(event) {
+    const id = localStorage.getItem('id');
+    const course = event.target.name;
+    const auth = localStorage.getItem('jwt');
+
+    let x = await axios.get("http://localhost:3000/user/" + id + "/courses", {headers: { Authorization: `Bearer ${auth}` }});
+    let y = x.data.result;
+
+    axios.delete("http://localhost:3000/user/" + id + "/courses", {headers: { Authorization: `Bearer ${auth}` }});
+    
+    let array = [];
+    y.forEach(c => {if (c != course) {
+        array.push(c);
+    }});
+
+    axios.post("http://localhost:3000/user/" + id + "/courses/", {data: array}, {headers: { Authorization: `Bearer ${auth}` }},
+    );
+    
+    let allClasses = await getAllCourses();
+    let classes = allClasses.data.result;
+
+    let toBeRendered = classes.filter(c => "" + c.number + "" == course);
+
+    let renderedClass = renderClass(toBeRendered[0]);
+
+    let removed = document.getElementById(course);
+
+    $(removed).remove();
+
+    $('.moreClasses').append(renderedClass);
 }
 
 // ---------------BACK END-----------------------
