@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CLASS NAME</title>
     <link rel="stylesheet" href="node_modules/bulma/css/bulma.css" />
     <link rel="stylesheet" href="node_modules/bulma/css/bulma.min.css" />
     <link rel="stylesheet" href="styles.css" />
@@ -12,67 +11,48 @@
 
 <body>
     <nav class="navbar" role="navigation" aria-label="main navigation">
-            <div class="navbar-brand">
-            <a id="logo" class="navbar-item" href="index.html">
-                <img src="/island.png" alt="Image">
-            </a>
-            </div>
+        <div class="navbar-brand">
+        </div>
 
-            <div class="navbar-menu">
-            <div class="navbar-start">
+        <div class="navbar-menu">
+                <div class="navbar-start">
+                        <a href="index.html">
+                            <img src="/logo.png" alt="Image">
+                        </a>
                 <a class="navbar-item" href="index.html">
-                Home
-                </a>
+                
             </div>
 
             <div class="navbar-end">
-                    <div class="navbar-item has-dropdown is-hoverable">
-                            <a class="navbar-link">
-                                <img id="profileicon" src="/myprofile.png">
-                            </a>
-                    
-                            <div class="navbar-dropdown">
-                                <a class="navbar-item">
-                                Profile
-                                </a>
-                                <a class="navbar-item">
-                                Logout
-                                </a>
-                            </div>
-                            </div>
-            </div>
-            </div>
-        </nav>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        <img id="profileicon" src="/myprofile.png">
+                    </a>
 
-<div class="myClasses">
-        <h1 class="is-family-primary" align="center">COMP 110</h1>
-    </div>
+                    <div class="navbar-dropdown">
 
-    <div class="box post" style="background-color: #b8def9">
-        <article class="media">
-            <div class="media-content">
-                <div class="content">
-                    <p>
-                        <textarea id="body" class="textarea" placeholder="Type post here">
-                        </textarea>
-                    </p>
-                </div>
-                <div class="container has-text-right">
-                    <button id="post" class="button is-dark"> Post </button>
+                        <a class="navbar-item">
+                            Logout
+                        </a>
+                    </div>
                 </div>
             </div>
-        </article>
-    </div>
+        </div>
+    </nav>
+
+    <div id="top"></div>
+    <div id="root"></div>
 
 
 
 
     <div class="display"></div>
 
-                    
+
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="node_modules/axios/dist/axios.js"></script>
     <script src="coursePage.js"></script>
 </body>
+
 </html>

@@ -30,15 +30,13 @@ window.fbAsyncInit = function () {
 // these 2 functions store the user's name so that we can use it for other webpages and check if they are logged in
 async function googleLogin(googleUser) {
     let profile = googleUser.getBasicProfile();
-    localStorage.setItem('name', profile.getName());
-    console.log("A");
-    const name = localStorage.getItem('name');
-    console.log(name);
+    localStorage.setItem('image', profile.getImageUrl());
+    localStorage.setItem('id', profile.getId());
     // const y = await axios( {
     //     method: "POST",
     //     url: "http://localhost:3000/account/create",
     //     data: {
-    //         "name": name,
+    //         "name": profile.getName(),
     //         "pass": "123",
     //         "data": {}
     //     }
@@ -49,7 +47,7 @@ async function googleLogin(googleUser) {
         method: "POST",
         url: "http://localhost:3000/account/login",
         data: {
-            "name": name,
+            "name": profile.getName(),
             "pass": "123"
         }
     }

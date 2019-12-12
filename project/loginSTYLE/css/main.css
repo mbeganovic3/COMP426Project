@@ -215,7 +215,7 @@ iframe {
   padding: 55px 55px 37px 55px;
 
   background: #141be4;
-  background: -webkit-linear-gradient(top, #97B7E0,  rgb(2, 125, 241));
+  background: -webkit-linear-gradient(top, #02BDF1,  rgb(2, 125, 241));
   background: -o-linear-gradient(top, #7579ff, red);
   background: -moz-linear-gradient(top, #7579ff, red);
   background: linear-gradient(top, #7579ff, #b224ef);
