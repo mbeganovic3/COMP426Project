@@ -9,7 +9,7 @@ const image = localStorage.getItem('image');
 $(document).ready(async function () {
     // loads the post box and also what class it is
     document.title = `COMP ${classNumber}`;
-    let x = `<h1 class="is-family-primary" align="center">Comp ${classNumber}</h1>
+    let x = `<h1 style="margin-top: 25px" class="is-family-primary" align="center"><strong>COMP ${classNumber}</strong></h1>
 <div class="box post" style="background-color: #b8def9">
     <article class="media">
         <div class="media-content">
@@ -26,6 +26,7 @@ $(document).ready(async function () {
 </div>`
     $('#textBox').val(null);
     $top.append(x);
+    $top.append(`<br>`);
 
     // loads all the posts
     let posts = await getPosts();

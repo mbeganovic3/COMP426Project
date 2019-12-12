@@ -42,7 +42,7 @@ async function googleLogin(googleUser) {
     //     }
     // }
     // );
-    
+
     const y = await axios( {
         method: "POST",
         url: "http://localhost:3000/account/login",
@@ -55,6 +55,7 @@ async function googleLogin(googleUser) {
     
     localStorage.setItem('jwt', y.data.jwt);
     localStorage.setItem('name', y.data.name);
+
     window.location.replace("index.html"); 
   }
 

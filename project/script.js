@@ -26,7 +26,7 @@ const renderUserClass = function (c) {
         '</div>',
         '<button id="go" class="button is-primary" name="',
         c,
-        '">Go To</button>',
+        '">Go</button>',
         '<div class="media-right">',
         '<button id="remove" class="button is-danger" name="',
         c,
@@ -145,7 +145,7 @@ const loadUserHome = async function () {
         courses.forEach(c => {
             rendered.push(renderClass(c))
         });
-        $('.display').append(rendered);
+        $('.moreClasses').append(rendered);
     }
 
     // add event handler for joining a class
@@ -180,10 +180,17 @@ const setupSearchBox = async function () {
             window.location.href = "coursePage.html";
             //FINDING PAGE TO OPEN
         } else {
-            alert("Please join this class first");
+
+            $(".modal").addClass("is-active");
+            $(".modal-background").click(backgroundHandler);
+            $(".modal-close").click(backgroundHandler)
         }
 
     }, false);
+}
+
+function backgroundHandler(event) {
+    $(".modal").removeClass("is-active");
 }
 
 const getAllCourses = async function () {
@@ -229,11 +236,6 @@ function onLoad() {
         gapi.auth2.init();
     })
 }
-
-function login(event) {
-   // console.log(window.location);
-    // window.location.replace("login.html");
-}
 //---------------JOIN A CLASS--------------------
 
 const handleJoin = async function (event) {
@@ -271,12 +273,12 @@ const handleRemove = async function (event) {
     const course = event.target.name;
     const auth = localStorage.getItem('jwt');
 
-    let x = await axios.get("http://localhost:3000/user/" + id + "/courses", {
+    let courseList = await axios.get("http://localhost:3000/user/" + id + "/courses", {
         headers: {
             Authorization: `Bearer ${auth}`
         }
     });
-    let y = x.data.result;
+    let y = courseList.data.result;
 
     axios.delete("http://localhost:3000/user/" + id + "/courses", {
         headers: {
