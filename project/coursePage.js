@@ -96,6 +96,7 @@ $(document).ready(async function () {
 
     $(document).on('click', "#post", createPost);
     $(document).on('click', "#delete", deletePost);
+    $(document).on("click", "#logout", handleLogout);
 
 });
 
@@ -188,3 +189,17 @@ const accountRoot = new axios.create({
 const privateRoot = new axios.create({
     baseURL: "http://localhost:3000/private"
 });
+
+const handleLogout = function (event) {
+    localStorage.clear();
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+        window.location.replace('login.html');
+    });
+}
+
+function onLoad() {
+    gapi.load('auth2', function () {
+        gapi.auth2.init();
+    })
+}

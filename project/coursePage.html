@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id"content="197627888254-79t5fadstnff25drop7n6agv41oufbm8.apps.googleusercontent.com">
     <link rel="stylesheet" href="node_modules/bulma/css/bulma.css" />
     <link rel="stylesheet" href="node_modules/bulma/css/bulma.min.css" />
     <link rel="stylesheet" href="styles.css" />
@@ -31,7 +32,7 @@
 
                     <div class="navbar-dropdown">
 
-                        <a class="navbar-item">
+                        <a class="navbar-item" id="logout">
                             Logout
                         </a>
                     </div>
@@ -53,6 +54,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="node_modules/axios/dist/axios.js"></script>
     <script src="coursePage.js"></script>
+    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 </body>
 
 </html>
