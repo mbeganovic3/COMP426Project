@@ -4,4 +4,5 @@
 - Implemented Facebook/Google login authentication API
 - JavaScript, Bulma, jQuery, Facebook login API, Google login API, HTTP, HTML
 
-![](UNC Twitter-Piazza 1.JPG)
+<img src="UNC Twitter-Piazza 1.JPG">
+
